@@ -1,31 +1,92 @@
+#include <stdlib.h>
 #include <iostream>
 using namespace std;
 
-class arrayBasedStack
+#define MAX 10
+
+struct stack
 {
-	int size;
-	int array[size];
-	int top;
-	arrayBasedStack(int number)
-	{
-		size = number;
-	}
+    int items[MAX];
+    int top;
 };
 
-void createEmptyStack(arrayBasedStack *&stack)
+int size(stack *s)
 {
-	stack->top = -1;
+    return s->top + 1;
 }
 
-bool isEmpty(arrayBasedStack *&stack)
+void createEmptyStack(stack *s)
 {
-	if (stack->top = -1)
-		return 1;
-	else
-		return 0;
+    s->top = -1;
 }
+
+bool isEmpty(stack *s)
+{
+    if (s->top == -1)
+        return true;
+    else
+        return false;
+}
+
+bool isFull(stack *s)
+{
+    if (s->top == MAX - 1)
+        return true;
+    else
+        return false;
+}
+
+void push(stack *s, int newItem)
+{
+    if (isFull(s))
+        cout << "full stack";
+    else
+    {
+        s->top++;
+        s->items[s->top] = newItem;
+    }
+}
+void pop(stack *s)
+{
+    if (isEmpty(s))
+        cout << "empty stack";
+    else
+    {
+        cout << "Item popped: " << s->items[s->top] << endl;
+        s->top--;
+    }
+}
+
+void printStack(stack *s)
+{
+    if (isEmpty(s))
+        cout << "[]" << endl;
+    else
+    {
+        for (int i = 0; i <= s->top; i++)
+        {
+            cout << s->items[i] << " ";
+        }
+        cout << endl;
+    }
+}
+
 int main()
 {
+    int ch;
+    stack *s = (stack *)malloc(sizeof(stack));
+    createEmptyStack(s);
 
-	return 0;
+    push(s, 1);
+    push(s, 2);
+    push(s, 3);
+    push(s, 110);
+
+
+    printStack(s);
+    size(s);
+    
+    pop(s);
+
+    return 0;
 }
