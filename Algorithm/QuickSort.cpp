@@ -8,27 +8,41 @@ void swap(int a, int b) {
 }
 
 // Partition function return the position of the pivot after partition process
-int HoarePartition() {
- return 0; 
+int HoarePartition(int arr[], int left, int right) {
+    bool found = false;
+    int pivot = arr[left];
+    int i = left; int j = right + 1;
+    while (!found) {
+        do {
+            i++;
+        } while (arr[i] < pivot);
+        do {
+            j--;
+        } while (arr[j] < pivot);
+        if (i >= j) found = true;
+        swap(arr[i], arr[j]);
+    }
+    return -1;
 }
 
 int LomutoPartition(int arr[], int left, int right) {
-  int i = left - 1;
-  int pivot = arr[right - 1];
-  for (int j = left; i < right; j++) {
-    if (arr[j] < pivot) {
-      i ++;
-      swap(arr[i], arr[j]);
+    int i = left - 1;
+    int pivot = arr[right - 1];
+    for (int j = left; i < right; j++) {
+      if (arr[j] < pivot) {
+        i ++;
+        swap(arr[i], arr[j]);
+      }
     }
-  }
-  swap(arr[i + 1], pivot);
-  return i + 1;
+    swap(arr[i + 1], pivot);
+    return i + 1;
 }
 
 void QuickSort(int arr[], int low, int high) {
   int pi;
   if (low < high) {
-    pi = LomutoPartition(arr, low, high);
+    //pi = LomutoPartition(arr, low, high);
+    pi = HoarePartition(arr, low, high);
     QuickSort(arr, low, pi - 1);
     QuickSort(arr, pi, high);
   }
