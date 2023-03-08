@@ -31,6 +31,5 @@ int main()
 {
     int arr[] = {1, 2, 10, 5, 6, 3, 7, 8, 4};
     InsertionSort(arr, 9);
-
     return 0;
 }
