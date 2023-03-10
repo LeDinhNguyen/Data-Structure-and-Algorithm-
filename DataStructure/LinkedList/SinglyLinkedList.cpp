@@ -10,11 +10,17 @@ public:
     {
         value = data;
     }
-};
 
-void createNode(Node *node)
-{
-}
+    int size() {
+        int size = 0;
+        Node *head = this;
+        while (head != nullptr) {
+            size++;
+            head = head->next;
+        }
+        return size;
+    } 
+};
 
 void printList(Node *head)
 {
