@@ -51,7 +51,7 @@ void deletionLast(Node *head)
 void traverse()
 {
 }
-
+/*
 int main()
 {
     Node *one = new Node(1);
@@ -78,4 +78,4 @@ int main()
     cout << endl;
 
     return 0;
-}
+}*/
