@@ -21,7 +21,7 @@ public:
         }
         return size;
     }
-    void printList()
+    void traverse()
     {
         DoublyLinkedListNode *temp = this;
         cout << "Linked List: ";
@@ -29,6 +29,17 @@ public:
         {
             cout << temp->value << " ";
             temp = temp->next;
+        }
+        cout << endl;
+    }
+    void reverse()
+    {
+        DoublyLinkedListNode *temp = this;
+        cout << "Linked List: ";
+        while (temp != nullptr) 
+        {
+            cout << temp->value << " ";
+            temp = temp->prev;
         }
         cout << endl;
     }
@@ -40,12 +51,25 @@ void insertionLast(DoublyLinkedListNode *head, int data) {
     while (temp->next != nullptr) {
         temp = temp->next;
     }
+    newNode->next = nullptr;
+    newNode->prev = temp;
     temp->next = newNode;
 }
 
-void insertionHead(DoublyLinkedListNode *head, int data) {}
+void insertionHead(DoublyLinkedListNode *head, int data) {
+    DoublyLinkedListNode *temp = head;
+    DoublyLinkedListNode *newNode = new DoublyLinkedListNode(data);
+    // temp->next = newNode;
+    // newNode->prev = temp;
+    // temp = newNode;
+    newNode->prev = nullptr;
+    newNode->next = head;
+    head->prev = newNode;
+    head = newNode;
+}
 
-void deletionLast(DoublyLinkedListNode *head) {
+
+void deletionLast(DoublyLinkedListNode *tail) {
 
 } 
 
@@ -60,6 +84,7 @@ int main() {
     DoublyLinkedListNode *three = new DoublyLinkedListNode(3);
     DoublyLinkedListNode *four = new DoublyLinkedListNode(4);
     DoublyLinkedListNode *head = one;
+    DoublyLinkedListNode *tail = four;
 
     // link theese Node
     one->prev = nullptr;
@@ -71,12 +96,12 @@ int main() {
     four->prev = three;
     four->next = nullptr;
     cout << "BEFORE" << endl;
-    head->printList();    
+    head->traverse();
 
     // Doubly Linked List function
     insertionLast(head, 5);
+    insertionHead(head, 0);
     cout << "AFTER" << endl;
-    head->printList();    
-
+    head->traverse();
     return 0;
 }
