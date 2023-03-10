@@ -1,30 +1,41 @@
 #include <iostream>
 using namespace std;
 
-class Node
+class SinglyLinkedListNode 
 {
 public:
     int value;
-    Node *next = nullptr;
-    Node(int data)
+     SinglyLinkedListNode *next = nullptr;
+     SinglyLinkedListNode(int data)
     {
         value = data;
     }
 
     int size() {
         int size = 0;
-        Node *head = this;
+         SinglyLinkedListNode *head = this;
         while (head != nullptr) {
             size++;
             head = head->next;
         }
         return size;
     } 
+    void printList()
+        {
+            SinglyLinkedListNode *temp = this;
+            cout << "Linked List: ";
+            while (temp != nullptr)
+            {
+                cout << temp->value << " ";
+                temp = temp->next;
+            }
+            cout << endl;
+    }
 };
 
-void printList(Node *head)
+void printList(SinglyLinkedListNode *head)
 {
-    Node *temp = head;
+     SinglyLinkedListNode *temp = head;
     while (temp != nullptr)
     {
         cout << temp->value << " ";
@@ -33,10 +44,10 @@ void printList(Node *head)
     cout << endl;
 }
 
-void insertionLast(Node *head, int data)
+void insertionLast( SinglyLinkedListNode *head, int data)
 {
-    Node *current = head;
-    Node *newNode = new Node(data);
+     SinglyLinkedListNode *current = head;
+     SinglyLinkedListNode *newNode = new  SinglyLinkedListNode(data);
     while (current->next != nullptr)
     {
         current = current->next;
@@ -44,9 +55,9 @@ void insertionLast(Node *head, int data)
     current->next = newNode;
 }
 
-void deletionLast(Node *head)
+void deletionLast( SinglyLinkedListNode *head)
 {
-    Node *last = head;
+     SinglyLinkedListNode *last = head;
     while (last->next->next != nullptr)
     {
         last = last->next;
@@ -54,17 +65,15 @@ void deletionLast(Node *head)
     last->next = nullptr;
 }
 
-void traverse()
-{
-}
+
 /*
 int main()
 {
-    Node *one = new Node(1);
-    Node *two = new Node(2);
-    Node *three = new Node(3);
+     SinglyLinkedListNode *one = new  SinglyLinkedListNode(1);
+     SinglyLinkedListNode *two = new  SinglyLinkedListNode(2);
+     SinglyLinkedListNode *three = new  SinglyLinkedListNode(3);
 
-    Node *head = one;
+     SinglyLinkedListNode *head = one;
     one->next = two;
     two->next = three;
 

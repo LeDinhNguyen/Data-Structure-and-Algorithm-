@@ -1,7 +1,7 @@
 #include "SinglyLinkedList.cpp" 
 
-int findNode(Node *head, int pos) {
-    Node *temp = head;
+int findNode(SinglyLinkedListNode *head, int pos) {
+    SinglyLinkedListNode *temp = head;
     int count = 0;
     if (pos >= head->size()) return -1;
     else {
@@ -16,17 +16,18 @@ int findNode(Node *head, int pos) {
 
 int main(){
     // create Node
-    Node *one = new Node(1);
-    Node *two = new Node(2);
-    Node *three = new Node(3);
-    Node *four = new Node(4);
+    SinglyLinkedListNode *one = new SinglyLinkedListNode(1);
+    SinglyLinkedListNode *two = new SinglyLinkedListNode(2);
+    SinglyLinkedListNode *three = new SinglyLinkedListNode(3);
+    SinglyLinkedListNode *four = new SinglyLinkedListNode(4);
     
     // link these Node
     one->next = two;
     two->next = three;
     three->next = four;
 
-    Node *head = one;
+    SinglyLinkedListNode *head = one;
+    head->printList();
 
     findNode(head, 3);
     return 0;
